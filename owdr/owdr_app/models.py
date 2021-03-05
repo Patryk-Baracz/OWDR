@@ -26,17 +26,17 @@ class InstitutionCategory(models.Model):
 
 
 class Donation(models.Model):
-    quantity = models.IntegerField(verbose_name="Liczba worków")
+    quantity = models.IntegerField(null=False, verbose_name="Liczba worków")
     categories = models.ManyToManyField(Category, through="DonationCategory", verbose_name="Kategoria")
-    institution = models.ForeignKey(Institution, verbose_name="Instytucja")
-    address = models.CharField(max_length=120, verbose_name="Ulica i numer domu")
-    phone_number = models.CharField(max_length=12, verbose_name="Numer telefonu")
-    city = models.CharField(max_length=34, verbose_name="Miasto")
-    zip_code = models.CharField(max_length=6, verbose_name="Kod pocztowy")
-    pick_up_date = models.DateField(verbose_name="Data odbioru")
-    pick_up_time = models.TimeField(verbose_name="Godzina odbioru")
+    institution = models.ForeignKey(Institution, null=False, on_delete=models.CASCADE, verbose_name="Instytucja")
+    address = models.CharField(max_length=120, null=False, verbose_name="Ulica i numer domu")
+    phone_number = models.CharField(max_length=12, null=False, verbose_name="Numer telefonu")
+    city = models.CharField(max_length=34, null=False, verbose_name="Miasto")
+    zip_code = models.CharField(max_length=6, null=False, verbose_name="Kod pocztowy")
+    pick_up_date = models.DateField(null=False, verbose_name="Data odbioru")
+    pick_up_time = models.TimeField(null=False, verbose_name="Godzina odbioru")
     pick_up_comment = models.TextField(verbose_name="Komentarz")
-    user = models.ForeignKey(User, Null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
 
 class DonationCategory(models.Model):

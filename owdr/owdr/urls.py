@@ -22,6 +22,6 @@ urlpatterns = [
     path('', LandingPage.as_view()),
     path('login/', Login.as_view()),
     path('register/', Register.as_view()),
-    path('add-donation', AddDonation.as_view()),
+    path('add-donation/', AddDonation.as_view()),
 
 ]
