@@ -117,8 +117,8 @@
         <div class="help--slides-pagination">
           {% if foundations.has_previous %}
 
-            <a href="?page=1#help" class="btn btn--small btn--without-border">&laquo; Pierwsza</a>
-            <a href="?page={{ foundations.previous_page_number }}#help" class="btn btn--small btn--without-border">Poprzednia</a>
+            <a href="?foundations=1#help" class="btn btn--small btn--without-border">&laquo; Pierwsza</a>
+            <a href="?foundations={{ foundations.previous_page_number }}#help" class="btn btn--small btn--without-border">Poprzednia</a>
 
           {% endif %}
           <span class="btn btn--small btn--without-border active">
@@ -126,8 +126,8 @@
           </span>
           {% if foundations.has_next %}
 
-            <a href="?page={{ foundations.next_page_number }}#help" class="btn btn--small btn--without-border">Następna</a>
-            <a href="?page={{ foundations.paginator.num_pages }}#help" class="btn btn--small btn--without-border">Ostatnia &raquo;</a>
+            <a href="?foundations={{ foundations.next_page_number }}#help" class="btn btn--small btn--without-border">Następna</a>
+            <a href="?foundations={{ foundations.paginator.num_pages }}#help" class="btn btn--small btn--without-border">Ostatnia &raquo;</a>
 
           {% endif %}
         </div>
@@ -184,8 +184,8 @@
         <div class="help--slides-pagination">
           {% if organisations.has_previous %}
 
-            <a href="?page=1#help" class="btn btn--small btn--without-border">&laquo; Pierwsza</a>
-            <a href="?page={{ organisations.previous_page_number }}#help" class="btn btn--small btn--without-border">Poprzednia</a>
+            <a href="?organisations=1#help" class="btn btn--small btn--without-border">&laquo; Pierwsza</a>
+            <a href="?organisations={{ organisations.previous_page_number }}#help" class="btn btn--small btn--without-border">Poprzednia</a>
 
           {% endif %}
           <span class="btn btn--small btn--without-border active">
@@ -193,8 +193,8 @@
           </span>
           {% if organisations.has_next %}
 
-            <a href="?page={{ organisations.next_page_number }}#help" class="btn btn--small btn--without-border">Następna</a>
-            <a href="?page={{ organisations.paginator.num_pages }}#help" class="btn btn--small btn--without-border">Ostatnia &raquo;</a>
+            <a href="?organisations={{ organisations.next_page_number }}#help" class="btn btn--small btn--without-border">Następna</a>
+            <a href="?organisations={{ organisations.paginator.num_pages }}#help" class="btn btn--small btn--without-border">Ostatnia &raquo;</a>
 
           {% endif %}
         </div>
@@ -229,8 +229,8 @@
         <div class="help--slides-pagination">
           {% if gatherings.has_previous %}
 
-            <a href="?page=1#help" class="btn btn--small btn--without-border">&laquo; Pierwsza</a>
-            <a href="?page={{ gatherings.previous_page_number }}#help" class="btn btn--small btn--without-border">Poprzednia</a>
+            <a href="?gathering=1#help" class="btn btn--small btn--without-border">&laquo; Pierwsza</a>
+            <a href="?gathering={{ gatherings.previous_page_number }}#help" class="btn btn--small btn--without-border">Poprzednia</a>
 
           {% endif %}
           <span class="btn btn--small btn--without-border active">
@@ -238,8 +238,8 @@
           </span>
           {% if gatherings.has_next %}
 
-            <a href="?page={{ gatherings.next_page_number }}#help" class="btn btn--small btn--without-border">Następna</a>
-            <a href="?page={{ gatherings.paginator.num_pages }}#help" class="btn btn--small btn--without-border">Ostatnia &raquo;</a>
+            <a href="?gathering={{ gatherings.next_page_number }}#help" class="btn btn--small btn--without-border">Następna</a>
+            <a href="?gathering={{ gatherings.paginator.num_pages }}#help" class="btn btn--small btn--without-border">Ostatnia &raquo;</a>
 
           {% endif %}
         </div>

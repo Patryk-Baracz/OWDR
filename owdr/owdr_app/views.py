@@ -6,10 +6,10 @@ from django.shortcuts import render
 
 
 # Create your views here.
-def listing(request, objects_list):
+def listing(request, objects_list, page):
     paginator = Paginator(objects_list, 5)
-    page = request.GET.get('page')
-    return paginator.get_page(page)
+    page_name = request.GET.get(page)
+    return paginator.get_page(page_name)
 
 def InstitutionCategoryToString(institution):
     categories = InstitutionCategory.objects.filter(institution=institution)
@@ -32,15 +32,15 @@ class LandingPage(View):
         foundations = Institution.objects.filter(type=1)
         for foundation in foundations:
             foundation.category = InstitutionCategoryToString(foundation)
-        foundations = listing(request, foundations)
+        foundations = listing(request, foundations, 'fundations')
         organisations = Institution.objects.filter(type=2)
         for organisation in organisations:
             organisation.category = InstitutionCategoryToString(organisation)
-        organisations = listing(request, organisations)
+        organisations = listing(request, organisations, 'organisations')
         gatherings = Institution.objects.filter(type=3)
         for gathering in gatherings:
             gathering.category = InstitutionCategoryToString(gathering)
-        gatherings = listing(request, gatherings)
+        gatherings = listing(request, gatherings, 'gathering')
         return render(request, 'index.html',
                       {"donated_quantity": donated_quantity, "donated_organisations": donated_organisations,
                        "foundations": foundations, "organisations": organisations, "gatherings": gatherings})
