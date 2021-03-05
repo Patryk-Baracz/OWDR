@@ -94,6 +94,7 @@
             <div class="col"><div class="text">{{ foundation.category}}</div></div>
           </li>
           {% endfor %}
+
 <!--          <li>-->
 <!--            <div class="col">-->
 <!--              <div class="title">Fundacja “Dla dzieci"</div>-->
@@ -112,13 +113,25 @@
 <!--            <div class="col"><div class="text">ubrania, jedzenie, ciepłe koce</div></div>-->
 <!--          </li>-->
         </ul>
-        <!-- Pagination
-        <ul class="help--slides-pagination">
-          <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-          <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
-          <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
-        </ul>
-        -->
+
+        <div class="help--slides-pagination">
+          {% if foundations.has_previous %}
+
+            <a href="?page=1#help" class="btn btn--small btn--without-border">&laquo; Pierwsza</a>
+            <a href="?page={{ foundations.previous_page_number }}#help" class="btn btn--small btn--without-border">Poprzednia</a>
+
+          {% endif %}
+          <span class="btn btn--small btn--without-border active">
+            Strona {{ foundations.number }} z {{ foundations.paginator.num_pages }}.
+          </span>
+          {% if foundations.has_next %}
+
+            <a href="?page={{ foundations.next_page_number }}#help" class="btn btn--small btn--without-border">Następna</a>
+            <a href="?page={{ foundations.paginator.num_pages }}#help" class="btn btn--small btn--without-border">Ostatnia &raquo;</a>
+
+          {% endif %}
+        </div>
+
       </div>
 
 
@@ -168,15 +181,24 @@
 <!--          </li>-->
         </ul>
 
-        <!-- Pagination
-        <ul class="help--slides-pagination">
-          <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-          <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
-          <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
-          <li><a href="#" class="btn btn--small btn--without-border" data-page="4">4</a></li>
-          <li><a href="#" class="btn btn--small btn--without-border" data-page="5">5</a></li>
-        </ul>
-        -->
+        <div class="help--slides-pagination">
+          {% if organisations.has_previous %}
+
+            <a href="?page=1#help" class="btn btn--small btn--without-border">&laquo; Pierwsza</a>
+            <a href="?page={{ organisations.previous_page_number }}#help" class="btn btn--small btn--without-border">Poprzednia</a>
+
+          {% endif %}
+          <span class="btn btn--small btn--without-border active">
+            Strona {{ organisations.number }} z {{ organisations.paginator.num_pages }}.
+          </span>
+          {% if organisations.has_next %}
+
+            <a href="?page={{ organisations.next_page_number }}#help" class="btn btn--small btn--without-border">Następna</a>
+            <a href="?page={{ organisations.paginator.num_pages }}#help" class="btn btn--small btn--without-border">Ostatnia &raquo;</a>
+
+          {% endif %}
+        </div>
+
       </div>
 
       <!-- SLIDE 3 -->
@@ -204,12 +226,23 @@
 <!--          </li>-->
         </ul>
 
-        <!-- Pagination
-        <ul class="help--slides-pagination">
-          <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-          <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
-        </ul>
-        -->
+        <div class="help--slides-pagination">
+          {% if gatherings.has_previous %}
+
+            <a href="?page=1#help" class="btn btn--small btn--without-border">&laquo; Pierwsza</a>
+            <a href="?page={{ gatherings.previous_page_number }}#help" class="btn btn--small btn--without-border">Poprzednia</a>
+
+          {% endif %}
+          <span class="btn btn--small btn--without-border active">
+            Strona {{ gatherings.number }} z {{ gatherings.paginator.num_pages }}.
+          </span>
+          {% if gatherings.has_next %}
+
+            <a href="?page={{ gatherings.next_page_number }}#help" class="btn btn--small btn--without-border">Następna</a>
+            <a href="?page={{ gatherings.paginator.num_pages }}#help" class="btn btn--small btn--without-border">Ostatnia &raquo;</a>
+
+          {% endif %}
+        </div>
       </div>
     </section>
 
