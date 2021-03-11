@@ -4,21 +4,27 @@
 
     <section class="login-page" id="register">
       <h2>Załóż konto</h2>
-      <form>
+      <form method="post">
+        {% csrf_token %}
         <div class="form-group">
-          <input type="text" name="name" placeholder="Imię" />
+<!--          <input type="text" name="name" placeholder="Imię" />-->
+          {{ form.first_name}}
         </div>
          <div class="form-group">
-          <input type="text" name="surname" placeholder="Nazwisko" />
+<!--          <input type="text" name="surname" placeholder="Nazwisko" />-->
+           {{ form.last_name }}
         </div>
         <div class="form-group">
-          <input type="email" name="email" placeholder="Email" />
+<!--          <input type="email" name="email" placeholder="Email" />-->
+          {{ form.email }}
         </div>
         <div class="form-group">
-          <input type="password" name="password" placeholder="Hasło" />
+<!--          <input type="password" name="password" placeholder="Hasło" />-->
+          {{ form.password }}
         </div>
         <div class="form-group">
-          <input type="password" name="password2" placeholder="Powtórz hasło" />
+<!--          <input type="password" name="password2" placeholder="Powtórz hasło" />-->
+          {{ form.password2 }}
         </div>
 
         <div class="form-group form-group--buttons">
