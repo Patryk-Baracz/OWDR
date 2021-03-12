@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.views import View
-from .models import Donation, Institution, InstitutionCategory, Category
+from .models import Donation, Institution, InstitutionCategory, Category, DonationCategory
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
@@ -112,7 +112,19 @@ class AddDonation(View):
             return redirect('/login/#login')
 
 
+def DonationCategoryToString(donation):
+    categories = DonationCategory.objects.filter(donation=donation)
+    categoryList = []
+    for category in categories:
+        categoryList.append(category.category.name)
+    str1 = ", "
+    return str1.join(categoryList)
+
+
 class UserView(View):
 
     def get(self, request):
-        return render(request, 'user.html')
+        donations = Donation.objects.filter(user=request.user)
+        for donation in donations:
+            donation.category = DonationCategoryToString(donation)
+        return render(request, 'user.html', {"donations": donations})

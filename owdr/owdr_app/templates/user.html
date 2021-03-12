@@ -7,7 +7,16 @@
         <h1>Imię: {{ user.first_name }}</h1>
         <h1>Nazwisko: {{ user.last_name }}</h1>
         <h1>Email: {{ user.email }}</h1>
-
+    </section>
+    <section class="login-page" id="donations">
+      <h2>Dary użytkownika</h2>
+        {% for donation in donations %}
+        <h1>Liczba worków: {{ donation.quantity }}</h1>
+        <h1>Rodzaj darów: {{ donation.category }}</h1>
+        <h1>Dla organizacji: {{ donation.institution }}</h1>
+        <h1>Data przekazania: {{ donation.pick_up_date }}</h1>
+        ...........................................................................................
+        {% endfor %}
     </section>
 
 {% endblock %}
