@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 class Category(models.Model):
     name = models.CharField(max_length=64, unique=True, verbose_name="Nazwa")
 
+    def __str__(self):
+        return self.name
+
 
 class Institution(models.Model):
     name = models.CharField(max_length=64, unique=True, verbose_name="Nazwa")
@@ -19,6 +22,8 @@ class Institution(models.Model):
     type = models.IntegerField(choices=TYPES, default=1, verbose_name="Typ")
     categories = models.ManyToManyField(Category, through="InstitutionCategory", verbose_name="Kategoria")
 
+    def __str__(self):
+        return self.name
 
 class InstitutionCategory(models.Model):
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)

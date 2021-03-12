@@ -25,6 +25,7 @@ def InstitutionCategoryToString(institution):
 
 
 class LandingPage(View):
+
     def get(self, request):
         donations = Donation.objects.all()
         donated_quantity = 0
@@ -52,6 +53,7 @@ class LandingPage(View):
 
 
 class Login(View):
+
     def get(self, request):
 
         form = LoginForm
@@ -80,6 +82,7 @@ class Logout(View):
 
 
 class Register(View):
+
     def get(self, request):
         form = CreateUserForm
         return render(request, 'register.html', {'form': form})
@@ -98,6 +101,7 @@ class Register(View):
 
 
 class AddDonation(View):
+
     def get(self, request):
 
         if request.user.is_authenticated:
@@ -106,3 +110,9 @@ class AddDonation(View):
             return render(request, 'form.html', {"categories": categories, "institutions": institutions})
         else:
             return redirect('/login/#login')
+
+
+class UserView(View):
+
+    def get(self, request):
+        return render(request, 'user.html')
