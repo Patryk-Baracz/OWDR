@@ -196,8 +196,30 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$next.forEach(btn => {
         btn.addEventListener("click", e => {
           e.preventDefault();
-          this.currentStep++;
-          this.updateForm();
+          if (this.currentStep === 4) {
+            if (fourthStepValidation()) {
+              this.currentStep++;
+              this.updateForm();
+            }
+          }
+          if (this.currentStep === 3) {
+            if (thirdStepValidation()) {
+              this.currentStep++;
+              this.updateForm();
+            }
+          }
+          if (this.currentStep === 2) {
+            if (secondStepValidation()) {
+              this.currentStep++;
+              this.updateForm();
+            }
+          }
+          if (this.currentStep === 1) {
+            if (firstStepValidation()) {
+              this.currentStep++;
+              this.updateForm();
+            }
+          }
         });
       });
 
@@ -253,3 +275,47 @@ document.addEventListener("DOMContentLoaded", function() {
     new FormSteps(form);
   }
 });
+
+function firstStepValidation() {
+  var checkboxElements = document.querySelectorAll(".checkbox-input");
+  for (var i = 0; i < checkboxElements.length; i++)
+    if (checkboxElements[i].checked)
+    return true;
+  alert("Zaznacz kategorie!");
+  return false;
+}
+
+function secondStepValidation() {
+  var bagsElement = document.querySelector("#bags");
+  if (bagsElement.value >= 1) {
+    return true;
+  } else {
+    alert("Podaj liczbę worków!");
+    return false;
+  }
+}
+
+function thirdStepValidation() {
+  var radioElements = document.querySelectorAll(".radio-input");
+    for (var i = 0; i < radioElements.length; i++)
+      if (radioElements[i].checked)
+      return true;
+    alert("Zaznacz organizację!");
+    return false;
+}
+
+function fourthStepValidation() {
+  var fourthLabelElements = document.querySelectorAll(".fourth-label");
+      var isValid = true
+      for (var i = 0; i < fourthLabelElements.length; i++)
+        if (fourthLabelElements[i].value === '') {
+
+          isValid = false;
+        }
+      if (isValid === true){
+        return true;
+      } else {
+        alert("Uzupełnij dane!");
+        return false;
+      }
+}

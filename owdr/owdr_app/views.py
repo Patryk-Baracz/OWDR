@@ -68,7 +68,7 @@ class Login(View):
             user = authenticate(username=user_name, password=password)
             if user:
                 login(request, user)
-                return redirect('/')
+                return redirect('/#')
             else:
                 return redirect('/register/#register')
 
