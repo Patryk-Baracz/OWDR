@@ -24,6 +24,12 @@ class Institution(models.Model):
 
     def __str__(self):
         return self.name
+    @property
+    def categoriesIdString(self):
+        array = []
+        for el in self.categories.all():
+            array.append(str(el.id))
+        return ','.join(array)
 
 class InstitutionCategory(models.Model):
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)

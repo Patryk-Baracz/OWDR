@@ -135,11 +135,11 @@
 
 
 
-          <!-- STEP 4 -->
+          <!-- STEP 3 -->
           <div data-step="3">
             <h3>Wybierz organizacje, której chcesz pomóc:</h3>
             {% for institution in institutions %}
-            <div class="form-group form-group--checkbox">
+            <div class="form-group form-group--checkbox organisations" data-categories="{{ institution.categoriesIdString }}">
               <label>
                 <input type="radio" name="organization" value="old" class ="radio-input"/>
                 <span class="checkbox radio"></span>
