@@ -338,7 +338,7 @@ function filterOrganisation() {
     console.log(categoriesList)
     var organistionsDivs = document.querySelectorAll('.organisations');
     for (var i = 0; i < organistionsDivs.length; i++) {
-        console.log(organistionsDivs[i].dataset.categories.split(''))
+        console.log(organistionsDivs[i].dataset.categories.split(','))
         var categoriesId = organistionsDivs[i].dataset.categories;
         console.log(categoriesList)
         for (var e = 0; e < categoriesList.length; e++) {
