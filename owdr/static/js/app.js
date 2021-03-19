@@ -200,6 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     e.preventDefault();
                     if (this.currentStep === 4) {
                         if (fourthStepValidation()) {
+                            summary();
                             this.currentStep++;
                             this.updateForm();
                         }
@@ -358,4 +359,15 @@ function resetOrganisationFilter() {
     for (var i = 0; i < organistionsDivs.length; i++) {
         organistionsDivs[i].style.visibility = "visible";
     }
+}
+
+function summary() {
+    var fourthLabelElements = document.querySelectorAll(".fourth-label");
+    var addressSummary = document.querySelectorAll('.address');
+    for (var i = 0; i < fourthLabelElements.length; i++) {
+        addressSummary[i].innerText = fourthLabelElements[i].value;
+    }
+    let comments = document.querySelector('#comments');
+    let commentsForm = document.querySelector('#comments-form')
+    comments.innerText = commentsForm.value;
 }
