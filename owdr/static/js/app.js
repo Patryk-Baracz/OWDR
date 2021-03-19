@@ -336,18 +336,12 @@ function filterOrganisation() {
             categoriesList.push(checkboxElements[i].value);
         }
     }
-    console.log(categoriesList)
     var organistionsDivs = document.querySelectorAll('.organisations');
     for (var i = 0; i < organistionsDivs.length; i++) {
-        console.log(organistionsDivs[i].dataset.categories.split(','))
         var categoriesId = organistionsDivs[i].dataset.categories;
-        console.log(categoriesList)
         for (var e = 0; e < categoriesList.length; e++) {
-            console.log(categoriesList[e])
             if (categoriesId.includes(categoriesList[e])) {
-                console.log("znalezione")
             } else {
-                console.log("nie ma")
                 organistionsDivs[i].style.visibility = "hidden";
             }
         }
@@ -370,4 +364,16 @@ function summary() {
     let comments = document.querySelector('#comments');
     let commentsForm = document.querySelector('#comments-form')
     comments.innerText = commentsForm.value;
+    let bagsSummary = document.querySelector('#bags-summary')
+    let bags = document.querySelector('#bags');
+    bagsSummary.innerHTML = bags.value + " * worek darów."
+    let organisationSummary = document.querySelector('#organisation-summary');
+    var checkboxOrganisation = document.querySelectorAll(".radio-input");
+    for (var i = 0; i < checkboxOrganisation.length; i++) {
+        if (checkboxOrganisation[i].checked) {
+            var organisation = checkboxOrganisation[i].parentElement.lastElementChild.firstElementChild.innerText;
+            console.log(checkboxOrganisation[i].parentElement.lastElementChild.firstElementChild)
+        }
+    }
+    organisationSummary.innerHTML = "Na rzecz - " + organisation + "."
 }
