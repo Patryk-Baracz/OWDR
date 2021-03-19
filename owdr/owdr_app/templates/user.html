@@ -2,21 +2,38 @@
 {% load static %}
 {% block content %}
 
-    <section class="login-page" id="user">
-      <h2>Dane użytkownika</h2>
-        <h1>Imię: {{ user.first_name }}</h1>
-        <h1>Nazwisko: {{ user.last_name }}</h1>
-        <h1>Email: {{ user.email }}</h1>
-    </section>
-    <section class="login-page" id="donations">
-      <h2>Dary użytkownika</h2>
-        {% for donation in donations %}
-        <h1>Liczba worków: {{ donation.quantity }}</h1>
-        <h1>Rodzaj darów: {{ donation.category }}</h1>
-        <h1>Dla organizacji: {{ donation.institution }}</h1>
-        <h1>Data przekazania: {{ donation.pick_up_date }}</h1>
-        ...........................................................................................
-        {% endfor %}
-    </section>
+<section class="login-page" id="user">
+    <h2>Dane użytkownika</h2>
+    <h1>Imię: {{ user.first_name }}</h1>
+    <h1>Nazwisko: {{ user.last_name }}</h1>
+    <h1>Email: {{ user.email }}</h1>
+</section>
+<section class="login-page" id="donations">
+    <h2>Dary użytkownika</h2>
+    {% for donation in donations %}
+    {% if donation.is_taken is False %}
+    <h1>Liczba worków: {{ donation.quantity }}</h1>
+    <h1>Rodzaj darów: {{ donation.category }}</h1>
+    <h1>Dla organizacji: {{ donation.institution }}</h1>
+    <h1>Data przekazania: {{ donation.pick_up_date }}</h1>
+    <a href="/user/is-taken/{{ donation.pk }}">
+        <button type="button" class="btn prev-step">Odebrane</button>
+    </a>
+    ...........................................................................................
+    {% endif %}
+    {% endfor %}
+    {% for donation in donations %}
+    {% if donation.is_taken is True %}
+    <h1 style="color: #737373">Liczba worków: {{ donation.quantity }}</h1>
+    <h1 style="color: #737373">Rodzaj darów: {{ donation.category }}</h1>
+    <h1 style="color: #737373">Dla organizacji: {{ donation.institution }}</h1>
+    <h1 style="color: #737373">Data przekazania: {{ donation.pick_up_date }}</h1>
+    <a href="/user/is-taken/{{ donation.pk }}/">
+        <button type="button" class="btn prev-step">A jednak nie</button>
+    </a>
+    ...........................................................................................
+    {% endif %}
+    {% endfor %}
+</section>
 
 {% endblock %}

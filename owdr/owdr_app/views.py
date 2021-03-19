@@ -128,12 +128,12 @@ class AddDonation(View):
             pick_up_time=pick_up_time, pick_up_comment=pick_up_comment, user=user
         )
         object.save()
-        categories = request.POST['categories']
+        categories = request.POST.getlist('categories')
         print(categories)
         for category in categories:
             print(category)
-            Category.objects.get(pk=category)
-            object.categories.add(categories)
+            cat = Category.objects.get(pk=category)
+            object.categories.add(cat)
         return render(request, 'form-confirmation.html')
 
 def DonationCategoryToString(donation):
@@ -152,3 +152,14 @@ class UserView(View):
         for donation in donations:
             donation.category = DonationCategoryToString(donation)
         return render(request, 'user.html', {"donations": donations})
+
+class IsTaken(View):
+
+    def get(self, request, pk):
+        donation = Donation.objects.get(pk=pk)
+        if donation.is_taken:
+            donation.is_taken = False
+        else:
+            donation.is_taken = True
+        donation.save()
+        return redirect('/user/')

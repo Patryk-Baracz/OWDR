@@ -48,6 +48,7 @@ class Donation(models.Model):
     pick_up_time = models.TimeField(null=False, verbose_name="Godzina odbioru")
     pick_up_comment = models.TextField(verbose_name="Komentarz")
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    is_taken = models.BooleanField(verbose_name="Odebrane", null=True, default=False)
 
 
 class DonationCategory(models.Model):
