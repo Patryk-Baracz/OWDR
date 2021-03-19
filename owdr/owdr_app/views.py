@@ -111,6 +111,30 @@ class AddDonation(View):
         else:
             return redirect('/login/#login')
 
+    def post(self, request):
+        quantity = request.POST['bags']
+        institution = Institution.objects.get(pk=request.POST['organization'])
+        address = request.POST['address']
+        city = request.POST['city']
+        zip_code = request.POST['postcode']
+        phone_number = request.POST['phone']
+        pick_up_date = request.POST['data']
+        pick_up_time = request.POST['time']
+        pick_up_comment = request.POST['more_info']
+        user = request.user
+        object = Donation.objects.create(
+            quantity=quantity, institution=institution, address=address,
+            phone_number=phone_number, city=city, zip_code=zip_code, pick_up_date=pick_up_date,
+            pick_up_time=pick_up_time, pick_up_comment=pick_up_comment, user=user
+        )
+        object.save()
+        categories = request.POST['categories']
+        print(categories)
+        for category in categories:
+            print(category)
+            Category.objects.get(pk=category)
+            object.categories.add(categories)
+        return render(request, 'form-confirmation.html')
 
 def DonationCategoryToString(donation):
     categories = DonationCategory.objects.filter(donation=donation)

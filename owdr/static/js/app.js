@@ -272,9 +272,12 @@ document.addEventListener("DOMContentLoaded", function () {
          * TODO: validation, send data to server
          */
         submit(e) {
-            e.preventDefault();
-            this.currentStep++;
-            this.updateForm();
+            if (this.currentStep === 5) {
+            } else {
+                e.preventDefault();
+                this.currentStep++;
+                this.updateForm();
+            }
         }
     }
 
@@ -372,7 +375,6 @@ function summary() {
     for (var i = 0; i < checkboxOrganisation.length; i++) {
         if (checkboxOrganisation[i].checked) {
             var organisation = checkboxOrganisation[i].parentElement.lastElementChild.firstElementChild.innerText;
-            console.log(checkboxOrganisation[i].parentElement.lastElementChild.firstElementChild)
         }
     }
     organisationSummary.innerHTML = "Na rzecz - " + organisation + "."
