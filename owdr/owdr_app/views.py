@@ -136,6 +136,7 @@ class AddDonation(View):
             object.categories.add(cat)
         return render(request, 'form-confirmation.html')
 
+
 def DonationCategoryToString(donation):
     categories = DonationCategory.objects.filter(donation=donation)
     categoryList = []
@@ -153,6 +154,7 @@ class UserView(View):
             donation.category = DonationCategoryToString(donation)
         return render(request, 'user.html', {"donations": donations})
 
+
 class IsTaken(View):
 
     def get(self, request, pk):
@@ -164,6 +166,7 @@ class IsTaken(View):
         donation.save()
         return redirect('/user/')
 
+
 class EditUser(View):
 
     def get(self, request):
@@ -171,22 +174,31 @@ class EditUser(View):
 
     def post(self, request):
         user = request.user
-        password = request.POST.get('password')
-        authentication = authenticate(username=user.username, password=password)
-        if authentication:
-            if request.POST.get('name'):
-                name = request.POST.get('name')
-                user.first_name = name
-            if request.POST.get('surname'):
-                surname = request.POST.get('surname')
-                user.last_name = surname
-            if request.POST.get('email'):
-                email = request.POST.get('email')
-                user.email = email
-            user.save()
-            return redirect('/user/')
+        if request.POST.get('password'):
+            password = request.POST.get('password')
+            authentication = authenticate(username=user.username, password=password)
+            if authentication:
+                if request.POST.get('name'):
+                    name = request.POST.get('name')
+                    user.first_name = name
+                if request.POST.get('surname'):
+                    surname = request.POST.get('surname')
+                    user.last_name = surname
+                if request.POST.get('email'):
+                    email = request.POST.get('email')
+                    user.email = email
+                user.save()
+                return redirect('/user/')
+            else:
+                pop = "Niepoprawne hasło"
+                return render(request, 'user-edit.html', {'pop': pop})
         else:
-            pop = "Niepoprawne hasło"
-            return render(request, 'user-edit.html', {'pop': pop})
-
-
+            password2 = request.POST.get('password2')
+            authentication2 = authenticate(username=user.username, password=password2)
+            if authentication2:
+                if request.POST.get('new-password') == request.POST.get('new-password2'):
+                    user.password = request.POST.get('new-password')
+                    return redirect('/user/')
+                else:
+                    pop2 = "Niepoprawne hasło"
+                    return render(request, 'user-edit.html', {'pop2': pop2})
