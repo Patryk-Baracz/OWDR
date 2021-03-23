@@ -120,7 +120,7 @@ class AddDonation(View):
         phone_number = request.POST['phone']
         pick_up_date = request.POST['data']
         pick_up_time = request.POST['time']
-        pick_up_comment = request.POST['more_info']
+        pick_up_comment = request.POST.get('more_info')
         user = request.user
         object = Donation.objects.create(
             quantity=quantity, institution=institution, address=address,
@@ -163,3 +163,30 @@ class IsTaken(View):
             donation.is_taken = True
         donation.save()
         return redirect('/user/')
+
+class EditUser(View):
+
+    def get(self, request):
+        return render(request, 'user-edit.html')
+
+    def post(self, request):
+        user = request.user
+        password = request.POST.get('password')
+        authentication = authenticate(username=user.username, password=password)
+        if authentication:
+            if request.POST.get('name'):
+                name = request.POST.get('name')
+                user.first_name = name
+            if request.POST.get('surname'):
+                surname = request.POST.get('surname')
+                user.last_name = surname
+            if request.POST.get('email'):
+                email = request.POST.get('email')
+                user.email = email
+            user.save()
+            return redirect('/user/')
+        else:
+            pop = "Niepoprawne hasło"
+            return render(request, 'user-edit.html', {'pop': pop})
+
+

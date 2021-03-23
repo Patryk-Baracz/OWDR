@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="login-page" id="user-edit">
+    <h2>Zmień swoje dane</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" name="name" placeholder="{{ user.first_name}}"/>
+
+        </div>
+        <div class="form-group">
+            <input type="text" name="surname" placeholder="{{ user.last_name }}"/>
+
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" placeholder="{{ user.email }}"/>
+
+        </div>
+        <div class="form-group">
+            Podaj hasło by zapisać zmiany: <br>
+            <input type="password" name="password" placeholder="Hasło"/>
+            <b>{{ pop }}</b>
+
+        </div>
+        <!--        <div class="form-group">-->
+        <!--          <input type="password" name="password2" placeholder="Powtórz hasło" />-->
+        <!--        </div>-->
+
+        <div class="form-group form-group--buttons">
+            <button class="btn" type="submit">Zatwierdź zmiany</button>
+        </div>
+    </form>
+</section>
+
+{% endblock %}

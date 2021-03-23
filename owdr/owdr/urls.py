@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from owdr_app.views import LandingPage, Login, Register, AddDonation, Logout, UserView, IsTaken
+from owdr_app.views import LandingPage, Login, Register, AddDonation, Logout, UserView, IsTaken, EditUser
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +26,7 @@ urlpatterns = [
     path('logout/', Logout.as_view()),
     path('user/', UserView.as_view()),
     path('user/is-taken/<int:pk>/', IsTaken.as_view()),
+    path('user/edit/', EditUser.as_view()),
 
 
 
